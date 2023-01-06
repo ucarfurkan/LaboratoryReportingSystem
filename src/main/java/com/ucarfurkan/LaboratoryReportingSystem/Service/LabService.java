@@ -10,4 +10,5 @@ public interface LabService {
     void addNewPatient(Patient patient);
     void addNewReport(Report report);
     void addNewLabTechnician(LabTechnician labTechnician);
+    List<Report> getAllReports();
 }

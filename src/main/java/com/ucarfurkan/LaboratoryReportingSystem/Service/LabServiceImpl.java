@@ -5,7 +5,11 @@ import com.ucarfurkan.LaboratoryReportingSystem.Entities.Patient;
 import com.ucarfurkan.LaboratoryReportingSystem.Entities.Report;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.PersonRepository;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.ReportRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class LabServiceImpl implements LabService {
     PersonRepository personRepository;
     ReportRepository reportRepository;
@@ -28,5 +32,10 @@ public class LabServiceImpl implements LabService {
     @Override
     public void addNewLabTechnician(LabTechnician labTechnician) {
         personRepository.save(labTechnician);
+    }
+
+    @Override
+    public List<Report> getAllReports() {
+        return reportRepository.findAll();
     }
 }
