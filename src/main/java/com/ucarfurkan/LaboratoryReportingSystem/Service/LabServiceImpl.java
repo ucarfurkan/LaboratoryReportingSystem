@@ -56,4 +56,9 @@ public class LabServiceImpl implements LabService {
                 .filter(p -> p instanceof LabTechnician)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteReportById(Long id) {
+        reportRepository.deleteById(id);
+    }
 }

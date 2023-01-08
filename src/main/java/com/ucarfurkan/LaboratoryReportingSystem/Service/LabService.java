@@ -14,4 +14,5 @@ public interface LabService {
     List<Report> getAllReports();
     List<Person> getAllPatients();
     List<Person> getAllLabTechnician();
+    void deleteReportById(Long id);
 }
