@@ -42,9 +42,5 @@ public class LaboratoryReportingSystemApplication implements CommandLineRunner {
 		Report report2 = new Report(labTechnician2,patient2,"sırt ağrısı","skolyoz");
 		reportRepository.save(report2);
 		patient2.getReports().add(report2);
-
-
-
-
 	}
 }
