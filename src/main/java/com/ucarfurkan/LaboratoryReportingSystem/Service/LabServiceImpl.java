@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,5 +61,10 @@ public class LabServiceImpl implements LabService {
     @Override
     public void deleteReportById(Long id) {
         reportRepository.deleteById(id);
+    }
+
+    @Override
+    public Report getReportById(Long id) {
+        return reportRepository.getReferenceById(id);
     }
 }

@@ -32,4 +32,11 @@ public class LabController {
         labService.deleteReportById(id);
         return "redirect:/reports";
     }
+
+    @GetMapping("/reports/details/{id}")
+    public String showDetails(@PathVariable Long id, Model model){
+        Report report = labService.getReportById(id);
+        model.addAttribute("report",report);
+        return "details";
+    }
 }

@@ -6,6 +6,7 @@ import com.ucarfurkan.LaboratoryReportingSystem.Entities.Person;
 import com.ucarfurkan.LaboratoryReportingSystem.Entities.Report;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LabService {
     void addNewPatient(Patient patient);
@@ -15,4 +16,5 @@ public interface LabService {
     List<Person> getAllPatients();
     List<Person> getAllLabTechnician();
     void deleteReportById(Long id);
+    Report getReportById(Long id);
 }

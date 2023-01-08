@@ -31,7 +31,7 @@
                     <td th:text="${report.diagnostic}"></td>
                     <td th:text="${report.dateOfReport}"></td>
                     <td>
-                      <a type="button" class="btn btn-info">Details</a>
+                      <a type="button" class="btn btn-info" th:href="@{/reports/details/{id}(id=${report.id})}">Details</a>
                       <a type="button" class="btn btn-primary">Update</a>
                       <a type="button" class="btn btn-danger" th:href=@{/reports/{id}(id=${report.id})}>Delete</a>
                     </td>

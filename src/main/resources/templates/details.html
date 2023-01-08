@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="report text-center mt-5">
+        <div class="report text-center mt-5" th:object="${report}">
             <div class="report-head">
                 <div class="personal-infos d-flex justify-content-center">
                     <div class="m-3 d-flex">
@@ -25,19 +25,19 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text">Name</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="name" value="" disabled>
+                            <input type="text" class="form-control" aria-label="name" th:field="*{patient.name}" disabled>
                         </div>
                         <div class="input-group mb-3 mr-2">
                             <div class="input-group-prepend">
                               <span class="input-group-text">Identity No</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="identity_no" value="" disabled>
+                            <input type="text" class="form-control" aria-label="identity_no" th:field="*{patient.identityNo}" disabled>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text">Date</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="date" value="" disabled>
+                            <input type="text" class="form-control" aria-label="date" th:field="*{dateOfReport}" disabled>
                         </div>
                     </div>
                 </div>
@@ -50,19 +50,19 @@
                             <div class="input-group-prepend">
                             <span class="input-group-text">Lab. Technician</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="lab_technician" value="" disabled>
+                            <input type="text" class="form-control" aria-label="lab_technician" th:field="*{labTechnician.name}" disabled>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                             <span class="input-group-text">File Number</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="file_number" value="" disabled>
+                            <input type="text" class="form-control" aria-label="file_number" th:field="*{fileNumber}" disabled>
                         </div>
                         <div class="input-group">
                             <div class="input-group-prepend">
                             <span class="input-group-text">Diagnostic</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="diagnostic" value="" disabled>
+                            <input type="text" class="form-control" aria-label="diagnostic" th:field="*{diagnostic}" disabled>
                         </div>
                     </div>
                 </div>
@@ -72,8 +72,11 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text">Details of Report</span>
                 </div>
-                <textarea type="text" class="form-control" aria-label="details" disabled></textarea>
+                <textarea type="text" class="form-control" aria-label="details" disabled th:field="*{detailOfDiagnostic}"></textarea>
             </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a th:href="@{/reports}" type="button" class="btn btn-warning mt-3">Go back</a>
         </div>
     </div>
 
