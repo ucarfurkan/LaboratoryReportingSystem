@@ -1,5 +1,6 @@
 package com.ucarfurkan.LaboratoryReportingSystem.Entities;
 
+import com.ucarfurkan.LaboratoryReportingSystem.Helper.Helper;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -21,8 +22,7 @@ public class Report {
     private Patient patient;
 
     @Column(name = "file_number")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int fileNumber;
+    private String fileNumber;
 
     @Column(name = "diagnostic")
     private String diagnostic;
@@ -44,6 +44,12 @@ public class Report {
         Instant instant = Instant.now();
         long millis = instant.toEpochMilli();
         this.dateOfReport = new Date(millis);
+        if(!Helper.isReportListEmpty(patient)){
+            this.fileNumber = patient.getIdentityNo() + " - " +  patient.getReports().size();
+        }
+        else{
+            this.fileNumber = patient.getIdentityNo();
+        }
     }
 
     public String getPatientName(){
@@ -78,11 +84,11 @@ public class Report {
         this.patient = patient;
     }
 
-    public int getFileNumber() {
+    public String getFileNumber() {
         return fileNumber;
     }
 
-    public void setFileNumber(int fileNumber) {
+    public void setFileNumber(String fileNumber) {
         this.fileNumber = fileNumber;
     }
 
