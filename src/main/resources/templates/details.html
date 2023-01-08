@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratory Reporting System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: #34495E;
+        }
+        .report{
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="report text-center mt-5">
+            <div class="report-head">
+                <div class="personal-infos d-flex justify-content-center">
+                    <div class="m-3 d-flex">
+                        <div class="input-group mb-3 mr-2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Name</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="name" value="" disabled>
+                        </div>
+                        <div class="input-group mb-3 mr-2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Identity No</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="identity_no" value="" disabled>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Date</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="date" value="" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="display-2">Report</h1>
+            <div class="report-details d-flex justify-content-start">
+                <div class="report-infos flex-grow-1 d-flex justify-content-start">
+                    <div class="info-section m-3">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">Lab. Technician</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="lab_technician" value="" disabled>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">File Number</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="file_number" value="" disabled>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text">Diagnostic</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="diagnostic" value="" disabled>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="input-group pl-3 pr-3 pb-3">
+                <div class="input-group-prepend">
+                <span class="input-group-text">Details of Report</span>
+                </div>
+                <textarea type="text" class="form-control" aria-label="details" disabled></textarea>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
