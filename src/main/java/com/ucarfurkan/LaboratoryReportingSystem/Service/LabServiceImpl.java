@@ -67,4 +67,19 @@ public class LabServiceImpl implements LabService {
     public Report getReportById(Long id) {
         return reportRepository.getReferenceById(id);
     }
+
+    @Override
+    public void updateReport(Report report) {
+        reportRepository.save(report);
+    }
+
+    @Override
+    public void updatePatient(Patient patient) {
+        personRepository.save(patient);
+    }
+
+    @Override
+    public Patient getPatientById(Long id) {
+        return (Patient) personRepository.getReferenceById(id);
+    }
 }
