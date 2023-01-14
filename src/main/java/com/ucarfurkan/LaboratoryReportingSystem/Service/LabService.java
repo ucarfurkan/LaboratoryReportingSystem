@@ -20,4 +20,6 @@ public interface LabService {
     void updateReport(Report report);
     void updatePatient(Patient patient);
     Patient getPatientById(Long id);
+    List<Report> getBySearch(String patientName, String labTechnicianName, String patientIdentityNo);
+
 }

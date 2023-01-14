@@ -7,6 +7,7 @@ import com.ucarfurkan.LaboratoryReportingSystem.Entities.Report;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.PersonRepository;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -82,4 +83,10 @@ public class LabServiceImpl implements LabService {
     public Patient getPatientById(Long id) {
         return (Patient) personRepository.getReferenceById(id);
     }
+
+    @Override
+    public List<Report> getBySearch(String patientName, String labTechnicianName, String patientIdentityNo) {
+        return reportRepository.findBySearch(patientName,labTechnicianName,patientIdentityNo);
+    }
+
 }

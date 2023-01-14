@@ -10,6 +10,14 @@
 <body>
     <div class="container">
         <div class="text-center pt-3">
+            <form th:action="@{/search}" th:object="${searchTags}" method="post">
+              <div class="input group mb-3 d-flex flex-row">
+                <input type="text" class="form-control m-2" placeholder="Patient Name" th:field="*{patientName}">
+                <input type="text" class="form-control m-2" placeholder="Patient Identity No" th:field="*{patientIdentityNo}">
+                <input type="text" class="form-control m-2" placeholder="Lab Technician Name" th:field="*{labTechnicianName}">
+                <button type="submit" class="btn btn-secondary m-2">Search</button>
+              </div>
+                </form>
             <table class="table table-striped table-dark">
                 <thead>
                   <tr>
@@ -23,7 +31,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr th:each="report: ${reports}">
+                  <tr th:each="report: ${reports}" th:field="${reports}">
                     <td th:text="${report.id}"></td>
                     <td th:text="${report.patient.name}"></td>
                     <td th:text="${report.patient.identityNo}"></td>

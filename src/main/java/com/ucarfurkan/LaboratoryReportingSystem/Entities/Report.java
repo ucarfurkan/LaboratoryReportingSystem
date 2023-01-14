@@ -60,6 +60,8 @@ public class Report {
         return patient.getIdentityNo();
     }
 
+    public String getLabTechnicianName(){ return labTechnician.getName();}
+
     public Long getId() {
         return id;
     }
