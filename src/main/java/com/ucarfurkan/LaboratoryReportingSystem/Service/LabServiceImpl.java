@@ -7,8 +7,10 @@ import com.ucarfurkan.LaboratoryReportingSystem.Entities.Report;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.PersonRepository;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,6 +87,19 @@ public class LabServiceImpl implements LabService {
     @Override
     public List<Report> getBySearch(String patientName, String labTechnicianName, String patientIdentityNo) {
         return reportRepository.findBySearch(patientName,labTechnicianName,patientIdentityNo);
+    }
+
+    @Override
+    public List<Report> sortReportsByDate(String sortBy) {
+        List<Report> reports = reportRepository.findAll();
+
+        if(sortBy.equals("asc")){
+            return reportRepository.findAll(Sort.by(Sort.Direction.ASC, "dateOfReport"));
+        }
+        else if(sortBy.equals("desc")){
+            return reportRepository.findAll(Sort.by(Sort.Direction.DESC, "dateOfReport"));
+        }
+        return reports;
     }
 
 }

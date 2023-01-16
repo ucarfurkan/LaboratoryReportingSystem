@@ -36,6 +36,15 @@ public class LabController {
         return "index";
     }
 
+    @GetMapping("/sortReports")
+    public String sortReports(@RequestParam(value = "sortBy", defaultValue = "asc") String sortBy, Model model) {
+        List<Report> sortedReports = labService.sortReportsByDate(sortBy);
+        model.addAttribute("reports", sortedReports);
+        SearchTags searchTags = new SearchTags("","","");
+        model.addAttribute("searchTags",searchTags);
+        return "index";
+    }
+
     @GetMapping("/reports/{id}")
     public String deleteReports(@PathVariable Long id){
         labService.deleteReportById(id);
@@ -60,13 +69,7 @@ public class LabController {
     public String updatedReport(@PathVariable Long id, @ModelAttribute("report") Report report){
         Report updatedReport = labService.getReportById(id);
         updatedReport.setDiagnostic(report.getDiagnostic());
-        updatedReport.setFileNumber(report.getFileNumber());
         updatedReport.setDetailOfDiagnostic(report.getDetailOfDiagnostic());
-        Patient patient = report.getPatient();
-        patient.setName(report.getPatient().getName());
-        patient.setIdentityNo(report.getPatient().getIdentityNo());
-        updatedReport.setPatient(patient);
-        labService.updatePatient(patient);
         labService.updateReport(updatedReport);
         return "redirect:/reports";
     }

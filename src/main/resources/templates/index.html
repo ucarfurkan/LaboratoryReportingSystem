@@ -16,6 +16,8 @@
                 <input type="text" class="form-control m-2" placeholder="Patient Identity No" th:field="*{patientIdentityNo}">
                 <input type="text" class="form-control m-2" placeholder="Lab Technician Name" th:field="*{labTechnicianName}">
                 <button type="submit" class="btn btn-secondary m-2">Search</button>
+                <a href="/sortReports?sortBy=asc" class="btn btn-warning m-2">Date (Ascending)</a>
+                <a href="/sortReports?sortBy=desc" class="btn btn-warning m-2">Date (Descending)</a>
               </div>
                 </form>
             <table class="table table-striped table-dark">

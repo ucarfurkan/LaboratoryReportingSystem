@@ -20,5 +20,5 @@ public interface LabService {
     void updatePatient(Patient patient);
     Patient getPatientById(Long id);
     List<Report> getBySearch(String patientName, String labTechnicianName, String patientIdentityNo);
-
+    List<Report> sortReportsByDate(String sortBy);
 }
