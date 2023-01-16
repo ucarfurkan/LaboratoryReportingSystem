@@ -6,7 +6,6 @@ import com.ucarfurkan.LaboratoryReportingSystem.Entities.Person;
 import com.ucarfurkan.LaboratoryReportingSystem.Entities.Report;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface LabService {
     void addNewPatient(Patient patient);

@@ -7,11 +7,9 @@ import com.ucarfurkan.LaboratoryReportingSystem.Entities.Report;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.PersonRepository;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

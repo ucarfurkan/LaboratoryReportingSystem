@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="report text-center mt-5" th:object="${report}">
+        <div class="report text-center mt-5 mb-5" th:object="${report}">
             <div class="report-head">
                 <div class="personal-infos d-flex justify-content-center">
                     <div class="m-3 d-flex">
@@ -73,6 +73,25 @@
                 <span class="input-group-text">Details of Report</span>
                 </div>
                 <textarea type="text" class="form-control" aria-label="details" disabled th:field="*{detailOfDiagnostic}"></textarea>
+            </div>
+            <div class="m-3 p-3">
+                <img id="report-image" class="report-image" width="75%" height="75%" th:attr="data-fileNumber=${report.fileNumber}" src="http://localhost:8080/images/default.jpg">
+                <script>
+                    var fileNumber = document.getElementById("report-image").getAttribute("data-fileNumber");
+                    var img = document.getElementById("report-image");
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('HEAD', '/images/' + fileNumber + '.jpg');
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                img.src = '/images/' + fileNumber + '.jpg';
+                            } else {
+                                img.src = '/images/' + fileNumber + '.png';
+                            }
+                        }
+                    };
+                    xhr.send();
+                </script>
             </div>
         </div>
         <div class="d-flex justify-content-end">
