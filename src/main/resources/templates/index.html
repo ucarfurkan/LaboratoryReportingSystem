@@ -6,18 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratory Reporting System</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      body{
+        background-color: #34495e;
+      }
+      .btn-search{
+        background-color: #C0C0C0;
+      }
+      .btn-ascending{
+        background-color: #6A5ACD;
+      }
+      .btn-descending{
+        background-color: #6A5ACD;
+      }
+      .btn-delete{
+        background-color: #F44336;
+      }
+      .btn-update{
+        background-color:  #16a085;
+      }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="text-center pt-3">
             <form th:action="@{/search}" th:object="${searchTags}" method="post">
-              <div class="input group mb-3 d-flex flex-row">
+              <div class="input group mb-3 d-flex flex-row align-items-center">
                 <input type="text" class="form-control m-2" placeholder="Patient Name" th:field="*{patientName}">
                 <input type="text" class="form-control m-2" placeholder="Patient Identity No" th:field="*{patientIdentityNo}">
                 <input type="text" class="form-control m-2" placeholder="Lab Technician Name" th:field="*{labTechnicianName}">
-                <button type="submit" class="btn btn-secondary m-2">Search</button>
-                <a href="/sortReports?sortBy=asc" class="btn btn-warning m-2">Date (Ascending)</a>
-                <a href="/sortReports?sortBy=desc" class="btn btn-warning m-2">Date (Descending)</a>
+                <button type="submit" class="btn btn-search m-2">Search</button>
+                <a href="/sortReports?sortBy=asc" class="btn btn-ascending m-2">Date (Ascending)</a>
+                <a href="/sortReports?sortBy=desc" class="btn btn-descending m-2">Date (Descending)</a>
               </div>
                 </form>
             <table class="table table-striped table-dark">
@@ -42,8 +62,8 @@
                     <td th:text="${report.dateOfReport}"></td>
                     <td>
                       <a type="button" class="btn btn-info" th:href="@{/reports/details/{id}(id=${report.id})}">Details</a>
-                      <a type="button" class="btn btn-primary" th:href=@{/reports/update/{id}(id=${report.id})}>Update</a>
-                      <a type="button" class="btn btn-danger" th:href=@{/reports/{id}(id=${report.id})}>Delete</a>
+                      <a type="button" class="btn btn-update" th:href=@{/reports/update/{id}(id=${report.id})}>Update</a>
+                      <a type="button" class="btn btn-delete" th:href=@{/reports/{id}(id=${report.id})}>Delete</a>
                     </td>
                   </tr>
                 </tbody>
