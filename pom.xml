@@ -6,8 +6,9 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.0.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
+
 	<groupId>com.ucarfurkan</groupId>
 	<artifactId>LaboratoryReportingSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -49,6 +50,7 @@
     </dependencies>
 
 	<build>
+		<finalName>LaboratoryReportingSystem</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
