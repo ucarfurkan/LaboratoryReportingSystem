@@ -16,7 +16,7 @@ Laboratory Reporting System, raporları görüntüleyebileceğin, düzenleyebile
 6. Maven
 7. JavaScript (Sadece bir işlev)
 
-Projeyi çalıştırdıktan sonra, görüntülemek için "localhost:8080/reports" bağlantısını tarayıcınızda açmalısınız.
+Projeyi çalıştırdıktan sonra, görüntülemek için "localhost:8080/reports" bağlantısını tarayıcınızda açmalısınız. Responsive tasarım olmadığından, projeyi masaüstünden açmanızı tavsiye ediyorum.
 
 ## Projedeki teknik seçimler
 Proje içerisinde 6 farklı package bulunyor. Bunlar: Config, Controller, Entities, Helper, Repository ve Service.
