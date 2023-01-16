@@ -44,7 +44,7 @@ PersonRepository ve ReportRepository sınıfları mevcut. İki sınıf da JpaRep
 ### Service
 LabService isimli bir interface'e ve onu implement eden LabServiceImpl sınıfına sahip. LabServiceImpl sınıfında repository sınıfları kullanılarak operasyonların metotları yazılmıştır.
 
-Projede genel olarak Dependency Injection uygulanmaya çalışılmış, snıflar ve metotlar bağımsızlaştırılmıştır. H2 Database kullanılmasının sebebi, projenin çalıştırılma sürecini hızlandırmaktır. application.properties dosyası tercih edilen veritabanına göre güncellenerek de kullanılabilir.
+Projede genel olarak Dependency Injection uygulanmaya çalışılmış, sınıflar ve metotlar bağımsızlaştırılmıştır. H2 Database kullanılmasının sebebi, projenin çalıştırılma sürecini hızlandırmaktır. application.properties dosyası tercih edilen veritabanına göre güncellenerek de kullanılabilir.
 
 
 
