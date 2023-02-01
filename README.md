@@ -41,34 +41,33 @@ After running the project, you must open the "localhost:8080/reports" link in yo
 ![sort](https://user-images.githubusercontent.com/71367001/216006786-59fe5589-be52-42bc-842a-fd1beaf75f58.gif)
 
 
-## Projedeki teknik seçimler
-Proje içerisinde 6 farklı package bulunyor. Bunlar: Config, Controller, Entities, Helper, Repository ve Service.
+## Technical Choices in the Project
+There are 6 different packages in the project. These are: Config, Controller, Entities, Helper, Repository and Service.
 
 ### Config
-Tek metottan oluşan tek bir sınıfa sahip. MvcConfing.java, addResourceHandlers(ResourceHandlerRegistry registry). Bu metot, istemciye kaynakları sunması için yazılmış ve yolunu belirlemiştir.
+It has a single class with a single method. MvcConfing.java, addResourceHandlers(ResourceHandlerRegistry registry). This method was written and determined the path to present resources to the client.
 
 ### Controller
-İçerisinde LabController sınıfına sahip. Bu sınıf, laboratuvar raporlarıyla ilgili olan istekleri (request) işlemek için kullanılıyor. Her biri belirli bir URL'ye eşlenmiş birden fazla metot bulundurmaktadır.
+It has LabController class inside. This class is used to process requests related to lab reports. It contains multiple methods, each mapped to a specific URL.
 
 ### Entities
-Entitites package'ı, içerisinde 5 tane sınıf barındırıyor. Bunlar: Person, LabTechnician, Patient, Report ve SearchTags.
-* **Person:** Person sınıfı, bir superclasstır ve @MappedSuperclass anotasyonuyla işaretlenmiştir. Buradaki amaç; sınıfın direkt kendisini veritabanı tablosuna eşlememek, onun yerine superclass olarak tablolara işlenecek olan diğer sınıflara "name","id" gibi değerleri sağlamasıdır.
-* **LabTechnician:** LabTechnician, Person sınıfıyla genişletilmiş bir sınıftır. Report sınıfıyla arasında "OneToMany" ilişkisi vardır ve @OneToMany anotasyonu ile işaretlenmiştir. 
-* **Patient:** Patient, Person sınıfıyla genişletilmiş bir sınıfıtır. Report sınıfıyla arasında "OneToMany" ilişkisi vardır ve @OneToMany anotasyonu ile işaretlenmiştir.
-* **Report:** Report sınıfı, LabTechnician ve Patient sınıflarıyla @ManyToOne ilişkisine sahiptir. Kendine özgü alanları vardır. Report sınıfındaki fileNumber, duplicate olmaması için hastanın kimlik numarası olarak kabul edilmiştir. Eğer bir hastaya ait birden fazla rapor varsa, bu raporların dosya numaraları "identityNo - 1", "identityNo - 2" şeklinde devam etmektedir. Ayrıca her rapor için farklı bir dosya numarası olduğundan, raporlara ait fotoğraflar bu dosya numaralarıyla çağrılır. Bu sebeple her bir rapor için görüntülemek istediğimiz fotoğraf dosyasının adını, o raporun dosya numarası yapmalıyız. Uzantısı JPG veya PNG olabilir. Fotoğraflar, resources/static/images dizininde bulunmaktadır.
-* **SearchTags:** SearchTags sınıfı, sadece arama işlemini gerçekleştirdiğimiz sırada kullandığımız bir "template class"tır.
+The Entities package contains 5 classes. These are: Person, Lab Technician, Patient, Report, and SearchTags.
+* **Person:** The Person class is a superclass and is marked with the @MappedSuperclass annotation. The reason is that the class does not map itself directly to the database table, instead, it provides values such as "name", and "id" to other classes that will be processed into the tables as a superclass.
+* **LabTechnician:** Lab Technician is an extended class with the Person class. It has a "One To Many" relationship to the Report class and is marked with the @OneToMany annotation.
+* **Patient:** Patient is an extended class with the Person class. It has a "One To Many" relationship to the Report class and is marked with the @OneToMany annotation.
+* **Report:** The Report class has a @ManyToOne relationship with the LabTechnician and Patient classes. It has its own fields. The fileNumber in the Report class has been accepted as the patient's identification number to avoid duplicates. If there is more than one report belonging to a patient, the file numbers of these reports continue as "identityNo - 1", "identityNo - 2". Also, since each report has a different file number, the photos of the reports are called with these file numbers. For this reason, for each report, we should make the name of the photo file we want to display is file number of that report. The extension can be JPG or PNG. The photos are located in the resources/static/images directory.
+* **SearchTags:** The SearchTags class is a "template class" that we use only when we perform the search.
 
 ### Helper
-Genellikle daha temiz kod yazılmasını sağladığını düşündüğümden projelerde Helper sınıfını oluşturmaktan yanayım. Bu projede sadece bir metottan oluşan bir Helper sınıfı var o da rapor listesinin boş olup olmadığını kontrol ediyor.
+In this project, there is a Helper class with only one method, which checks if the report list is empty.
 
 ### Repository
-PersonRepository ve ReportRepository sınıfları mevcut. İki sınıf da JpaRepository<,> sınıfıyla genişletilmiş. Bunun sebebi, gerçekleştirmek istediğimiz operasyonlarda Hibernate kullanmak. 2 ayrı sınıf yerine PersonRepository sınıfı oluşturularak yazılım geliştirme prensiplerine uymaya çalışıldı. Ayrıca, ReportRepository içerisinde native SQL diliyle yazılmış bir filtreleme sorgusu mevcut.
+It has PersonRepository and ReportRepository classes. Both classes are extended with the JpaRepository<,> class. This is because we use Hibernate for the operations we want to perform. By creating PersonRepository class instead of 2 separate classes, it tried to comply with software development principles. In addition, there is a filtering query written in the native SQL language in the ReportRepository.
 
 ### Service
-LabService isimli bir interface'e ve onu implement eden LabServiceImpl sınıfına sahip. LabServiceImpl sınıfında repository sınıfları kullanılarak operasyonların metotları yazılmıştır.
+It has an interface called LabService and the LabServiceImpl class that implements it. Methods of operations are written using repository classes in LabServiceImpl class.
 
-Projede genel olarak Dependency Injection uygulanmaya çalışılmış, sınıflar ve metotlar bağımsızlaştırılmıştır. H2 Database kullanılmasının sebebi, projenin çalıştırılma sürecini hızlandırmaktır. application.properties dosyası tercih edilen veritabanına göre güncellenerek de kullanılabilir.
-
+In the project, Dependency Injection was tried to be applied in general, and classes and methods were tried to make independent. The reason for using H2 Database is to speed up the execution of the project. It can also be used by updating the application.properties file according to the preferred database.
 
 
 
