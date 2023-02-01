@@ -1,22 +1,45 @@
 # LaboratoryReportingSystem
-Laboratory Reporting System, raporları görüntüleyebileceğin, düzenleyebileceğin, silebileceğin, arama yapabileceğin ve tarihe göre sıralayabileceğin bir uygulamadır.
+Laboratory Reporting System is an application with which you can view reports, edit, delete, search, and sort reports by date.
 
-İlk olarak, kodu localde şu adımları takip ederek çalıştırabilirsiniz:
-* Terminal veya CMD'de "git clone https://github.com/ucarfurkan/LaboratoryReportingSystem.git" komutunu çalıştırarak, proje dosyalarını indirin.
-* İndirdiğiniz dosyaya "cd" komutunu kullanarak girin.
-* Ardından, "mvn clean package" komutu ile jar dosyasının oluşturulmasını sağlayın.
-* Son olarak, "java -jar target/LaboratoryReportingSystem.jar" komutu ile projeyi çalıştırın.
+First, you can run the code locally by following these steps:
+* Download the project by running "git clone https://github.com/ucarfurkan/LaboratoryReportingSystem.git" in terminal or CMD.
+* Move to the downloaded file using the "cd" command.
+* Next, create the jar file with the "mvn clean package" command.
+* Finally, run the project with the command "java -jar target/LaboratoryReportingSystem.jar".
 
-## Projede kullanılan teknolojiler:
+## In this project, the technologies I used are:
 1. Java, Spring Boot
 2. Hibernate/JPA
 3. H2 Database
 4. HTML, CSS
 5. Bootstrap
 6. Maven
-7. JavaScript (Sadece bir işlev)
+7. JavaScript
 
-Projeyi çalıştırdıktan sonra, görüntülemek için "localhost:8080/reports" bağlantısını tarayıcınızda açmalısınız. Responsive tasarım olmadığından, projeyi masaüstünden açmanızı tavsiye ediyorum.
+After running the project, you must open the "localhost:8080/reports" link in your browser to view it. Since there is no responsive design, I recommend you open the project from the desktop.
+
+## In Laboratory Reporting System, you can:
+
+* Delete reports from the application
+
+![delete](https://user-images.githubusercontent.com/71367001/216006184-565d4d2d-9c90-4016-a223-4b56b815603b.gif)
+
+* Show details of the report
+
+![details](https://user-images.githubusercontent.com/71367001/216006347-7b2c9bd2-02e4-44cd-ae91-4088b40aaf8e.gif)
+
+* Update the existing report
+
+![update](https://user-images.githubusercontent.com/71367001/216006455-5bb01b41-8d92-493f-a3b1-efc3c3e8c298.gif)
+
+* Search reports
+
+![search](https://user-images.githubusercontent.com/71367001/216006722-36c9402e-7814-4cf9-b52c-3c2f8cc71bee.gif)
+
+* Sort reports by date
+
+![sort](https://user-images.githubusercontent.com/71367001/216006786-59fe5589-be52-42bc-842a-fd1beaf75f58.gif)
+
 
 ## Projedeki teknik seçimler
 Proje içerisinde 6 farklı package bulunyor. Bunlar: Config, Controller, Entities, Helper, Repository ve Service.
