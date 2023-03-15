@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container">
-        <form class="report text-center mt-5 row" th:action="@{/reports/{id} (id=${report.id})}" th:object="${report}" method="POST">
+        <form class="report text-center mt-5 row" enctype="multipart/form-data" th:action="@{/reports/{id} (id=${report.id})}" th:object="${report}" method="POST">
                         <div class="input-group m-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text">Name</span>
@@ -45,22 +45,49 @@
                                 <span class="input-group-text">File Number</span>
                             </div>
                             <input type="text" class="form-control" aria-label="file_number" th:field="*{fileNumber}" disabled>
-        </div><div  class="input-group m-3">
+        </div>
+            <div  class="input-group m-3">
             <div class="input-group-prepend">
                                 <span class="input-group-text">Diagnostic</span>
                             </div>
             <input type="text" class="form-control" aria-label="diagnostic" th:field="*{diagnostic}">
-        </div><div  class="input-group m-3">
+        </div>
+            <div  class="input-group m-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Details of Report</span>
                             </div>
                             <textarea type="text" class="form-control" aria-label="details" th:field="*{detailOfDiagnostic}"></textarea>
         </div>
+            <div class="m-3 p-3 justify-content-center w-100">
+                <img id="report-image" class="report-image" width="100%" height="100%" th:attr="data-fileNumber=${report.fileNumber}" src="http://localhost:8080/images/default.jpg">
+                <script>
+                    var fileNumber = document.getElementById("report-image").getAttribute("data-fileNumber");
+                    var img = document.getElementById("report-image");
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('HEAD', '/images/' + fileNumber + '.jpg');
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                img.src = '/images/' + fileNumber + '.jpg';
+                            } else {
+                                img.src = '/images/' + fileNumber + '.png';
+                            }
+                        }
+                    };
+                    xhr.send();
+                </script>
+            </div>
+            <div  class="input-group m-3">
+                <label for="img">Select image:</label>
+                <input type="file" id="img" name="reportImage" accept=".jpg, .png">
+            </div>
                     <button type="submit" class="btn btn-primary m-3">Save</button>
         </form>
         <div class="d-flex justify-content-end mb-3">
             <a th:href="@{/reports}" type="button" class="btn btn-warning mt-3">Go back</a>
         </div>
+
+
     </div>
 
 </body>

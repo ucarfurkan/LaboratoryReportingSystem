@@ -39,15 +39,13 @@ public class LabController {
     }
 
     @PostMapping("/reports")
-    public String addReport(@ModelAttribute("report") Report report,
-                            @RequestParam("labTechnicianId") Long labTechnicianId,
+    public String addReport(@RequestParam("labTechnicianId") Long labTechnicianId,
                             @RequestParam("patientName") String patientName,
                             @RequestParam("patientIdentityNo") String patientIdentityNo,
                             @RequestParam("patientDiagnostic") String patientDiagnostic,
                             @RequestParam("detailOfDiagnostic") String detailOfDiagnostic,
                             @RequestParam("reportImage") MultipartFile image,
-                            HttpSe"rvletRequest request,
-                            Model model) throws IOException {
+                            HttpServletRequest request) throws IOException {
         Patient patient;
         if(labService.getPatientByIdNo(patientIdentityNo) == null){
             patient = new Patient(patientName,patientIdentityNo);
@@ -86,13 +84,7 @@ public class LabController {
 
     @GetMapping("/reports/add")
     public String showAddReportForm(Model model) {
-        List<Person> people = labService.getAllPeople();
-        List<LabTechnician> technicians = new ArrayList<>();
-        for (Person person : people) {
-            if (person instanceof LabTechnician) {
-                technicians.add((LabTechnician) person);
-            }
-        }
+        List<LabTechnician> technicians = labService.getAllLabTechnician();
         model.addAttribute("labTechnicians", technicians);
         return "add-report";
     }
@@ -134,11 +126,31 @@ public class LabController {
     }
 
     @PostMapping("/reports/{id}")
-    public String updatedReport(@PathVariable Long id, @ModelAttribute("report") Report report){
+    public String updatedReport(@PathVariable Long id, @ModelAttribute("report") Report report, @RequestParam("reportImage") MultipartFile image,
+                                HttpServletRequest request) throws IOException {
         Report updatedReport = labService.getReportById(id);
         updatedReport.setDiagnostic(report.getDiagnostic());
         updatedReport.setDetailOfDiagnostic(report.getDetailOfDiagnostic());
         labService.updateReport(updatedReport);
+
+        String fileExtension = FilenameUtils.getExtension(image.getOriginalFilename());
+        String fileName = updatedReport.getFileNumber() + "." + fileExtension;
+        String uploadDirectory = request.getServletContext().getRealPath("/images/");
+
+        try {
+            Path uploadPath = Paths.get(uploadDirectory);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+
+            byte[] bytes = image.getBytes();
+            Path filePath = Paths.get(uploadDirectory + fileName);
+            Files.write(filePath, bytes);
+        } catch (IOException e) {
+            throw e;
+        }
+
+
         return "redirect:/reports";
     }
 }

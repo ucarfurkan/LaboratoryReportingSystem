@@ -31,7 +31,7 @@ public class LaboratoryReportingSystemApplication implements CommandLineRunner {
 		personRepository.save(labTechnician1);
 		personRepository.save(labTechnician2);
 		personRepository.save(labTechnician3);
-		Patient patient1 = new Patient("Eren Cumhur","231231232");
+/*		Patient patient1 = new Patient("Eren Cumhur","231231232");
 		personRepository.save(patient1);
 		Patient patient2 = new Patient("Aygün Atilla","332234232");
 		personRepository.save(patient2);
@@ -58,6 +58,6 @@ public class LaboratoryReportingSystemApplication implements CommandLineRunner {
 		patient4.getReports().add(report5);
 		Report report6 = new Report(labTechnician1,patient5,"Siroz","Hepatit B, obezite, diyabet.");
 		reportRepository.save(report6);
-		patient5.getReports().add(report6);
+		patient5.getReports().add(report6);*/
 	}
 }

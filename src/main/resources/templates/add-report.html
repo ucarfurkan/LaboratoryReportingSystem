@@ -17,9 +17,9 @@
 </head>
 <body>
 <h1>Add Report</h1>
-<form method="post" enctype="multipart/form-data" th:action="@{/reports}" th:object="${report}">
+<form method="post" enctype="multipart/form-data" th:action="@{/reports}">
     <label>Lab Technician:</label>
-    <select name="labTechnicianId">
+    <select name="labTechnicianId" required>
         <option value="" selected disabled hidden>Select Lab Technician</option>
         <option th:each="labTechnician : ${labTechnicians}"  th:value="${labTechnician.id}" th:text="${labTechnician.name}"></option>
     </select>
@@ -39,7 +39,7 @@
     <input type="text" name="detailOfDiagnostic" required>
     <br><br>
     <label for="img">Select image:</label>
-    <input type="file" id="img" name="reportImage" accept="image/jpg, image/png">
+    <input type="file" id="img" name="reportImage" accept=".jpg, .png">
     <br><br>
     <input type="submit" value="Add Report">
 </form>

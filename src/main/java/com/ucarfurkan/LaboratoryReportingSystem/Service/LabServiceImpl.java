@@ -4,7 +4,6 @@ import com.ucarfurkan.LaboratoryReportingSystem.Entities.LabTechnician;
 import com.ucarfurkan.LaboratoryReportingSystem.Entities.Patient;
 import com.ucarfurkan.LaboratoryReportingSystem.Entities.Person;
 import com.ucarfurkan.LaboratoryReportingSystem.Entities.Report;
-import com.ucarfurkan.LaboratoryReportingSystem.Repository.LabTechnicianRepository;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.PersonRepository;
 import com.ucarfurkan.LaboratoryReportingSystem.Repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +18,11 @@ import java.util.Optional;
 public class LabServiceImpl implements LabService {
     PersonRepository personRepository;
     ReportRepository reportRepository;
-    LabTechnicianRepository labTechnicianRepository;
 
     @Autowired
-    public LabServiceImpl(PersonRepository personRepository, ReportRepository reportRepository, LabTechnicianRepository labTechnicianRepository){
+    public LabServiceImpl(PersonRepository personRepository, ReportRepository reportRepository){
         this.personRepository = personRepository;
         this.reportRepository = reportRepository;
-        this.labTechnicianRepository = labTechnicianRepository;
     }
 
     @Override
@@ -38,10 +35,6 @@ public class LabServiceImpl implements LabService {
         reportRepository.save(report);
     }
 
-    @Override
-    public void addNewLabTechnician(LabTechnician labTechnician) {
-        personRepository.save(labTechnician);
-    }
 
     @Override
     public List<Report> getAllReports() {
@@ -62,7 +55,7 @@ public class LabServiceImpl implements LabService {
 
     @Override
     public List<LabTechnician> getAllLabTechnician() {
-        List<Person> persons = labTechnicianRepository.findAll();
+        List<Person> persons = personRepository.findAll();
         List<LabTechnician> technicians = new ArrayList<>();
         for (Person person : persons) {
             if (person instanceof LabTechnician) {
@@ -84,10 +77,6 @@ public class LabServiceImpl implements LabService {
         return foundPatient;
     }
 
-    @Override
-    public List<Person> getAllPeople(){
-        return personRepository.findAll();
-    }
 
     @Override
     public void deleteReportById(Long id) {
@@ -101,22 +90,12 @@ public class LabServiceImpl implements LabService {
 
     @Override
     public Optional<Person> getLabTechnicianById(Long id) {
-        return labTechnicianRepository.findById(id);
+        return personRepository.findById(id);
     }
 
     @Override
     public void updateReport(Report report) {
         reportRepository.save(report);
-    }
-
-    @Override
-    public void updatePatient(Patient patient) {
-        personRepository.save(patient);
-    }
-
-    @Override
-    public Patient getPatientById(Long id) {
-        return (Patient) personRepository.getReferenceById(id);
     }
 
     @Override
