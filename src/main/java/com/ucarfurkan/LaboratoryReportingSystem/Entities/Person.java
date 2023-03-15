@@ -2,7 +2,7 @@ package com.ucarfurkan.LaboratoryReportingSystem.Entities;
 
 import jakarta.persistence.*;
 
-@MappedSuperclass
+@Entity
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

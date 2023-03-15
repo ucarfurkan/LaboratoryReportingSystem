@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratory Reporting System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: #34495e;
+        }
+        .report{
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+<h1>Add Report</h1>
+<form method="post" enctype="multipart/form-data" th:action="@{/reports}" th:object="${report}">
+    <label>Lab Technician:</label>
+    <select name="labTechnicianId">
+        <option value="" selected disabled hidden>Select Lab Technician</option>
+        <option th:each="labTechnician : ${labTechnicians}"  th:value="${labTechnician.id}" th:text="${labTechnician.name}"></option>
+    </select>
+
+
+    <br><br>
+    <label>Patient Name:</label>
+    <input type="text" name="patientName" required>
+    <br><br>
+    <label>Patient Identity No:</label>
+    <input type="text" name="patientIdentityNo" required>
+    <br><br>
+    <label>Diagnostic:</label>
+    <input type="text" name="patientDiagnostic" required>
+    <br><br>
+    <label>Detail of Diagnostic:</label>
+    <input type="text" name="detailOfDiagnostic" required>
+    <br><br>
+    <label for="img">Select image:</label>
+    <input type="file" id="img" name="reportImage" accept="image/jpg, image/png">
+    <br><br>
+    <input type="submit" value="Add Report">
+</form>
+</body>
+</html>
